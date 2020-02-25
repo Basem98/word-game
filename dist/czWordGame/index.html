@@ -14,6 +14,8 @@
 </head>
 
 <body>
+
+  <!-- Main Divs -->
   <div class="welcome-panel">
     <h2>Welcome to the vintage-inspired Czech/English word game</h2>
   </div>
@@ -27,26 +29,8 @@
     <button class="play-btn play-btn-en">Play Now (English)</button>
     <button class="signUp-btn">Sign Up</button>
   </div>
-  <div class="game-modal-container">
-    <div class="game-modal">
-      <p>Hello, mate. Can I speak to you for a second?</p>
-      <input type="radio" id="sol-1" name="solution1"><br>
-      <input type="radio" id="sol-2" name="solution2"><br>
-      <input type="radio" id="sol-3" name="solution3"><br>
-      <button class="submit-solution-btn">Submit Answer</button>
-      <span class="close-game-modal">X</span>
-    </div>
-  </div>
-  <div class="failure-modal-container">
-    <div class="failure-modal">
-      <p>Unfortunately, either your time is out or your answer is wrong</p>
-      <div class="failure-btns-container">
-        <button class="play-again-btn">Play Again</button>
-        <button class="check-answer-btn">Check Answer</button>
-      </div>
-      <span class="close-failure-modal">X</span>
-    </div>
-  </div>
+
+  <!-- Forms -->
   <div class="form-container">
     <div class="signIn-form">
       <form action="">
@@ -70,8 +54,46 @@
       </form>
     </div>
   </div>
+
+  <!-- Game Modals -->
+  <div class="game-modal-container">
+    <div class="game-modal">
+      <p class="word-definition"></p>
+      <input type="radio" id="sol-0" name="solution">
+      <label for="sol-0" class="label-0"></label>
+      <br>
+      <input type="radio" id="sol-1" name="solution">
+      <label for="sol-1" class="label-1"></label>
+      <br>
+      <input type="radio" id="sol-2" name="solution">
+      <label for="sol-2" class="label-2"></label>
+      <br>
+      <button class="submit-solution-btn">Submit Answer</button>
+      <span class="close-game-modal">X</span>
+    </div>
+  </div>
+  <div class="failure-modal-container">
+    <div class="failure-modal">
+      <p>Unfortunately, either your time is out or your answer is wrong</p>
+      <div class="failure-btns-container">
+        <button class="play-again-btn failure-btn">Play Again</button>
+        <button class="check-answer-btn">Check Answer</button>
+      </div>
+      <span class="close-failure-modal">X</span>
+    </div>
+  </div>
+  <div class="success-modal-container">
+    <div class="success-modal">
+      <p>You got the answer right!</p>
+      <div class="success-btns-container">
+        <button class="play-again-btn success-btn">Play Again</button>
+        <span class="close-success-modal">X</span>
+      </div>
+    </div>
+  </div>
   <script type="text/javascript" src="./scripts/homepage/forms.js"></script>
   <script type="text/javascript" src="./scripts/homepage/modal.js"></script>
+
 </body>
 
 </html>

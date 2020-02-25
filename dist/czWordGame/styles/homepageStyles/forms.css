@@ -33,7 +33,7 @@
   width: 100%;
   overflow: auto;
   transform: translateY(-100%);
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
 .signUp-form {
@@ -45,7 +45,7 @@
   width: 100%;
   overflow: auto;
   transform: translateY(0);
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
 .active-form {
