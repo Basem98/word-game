@@ -167,7 +167,7 @@
   position: absolute;
   top: 0.3em;
   right: 0.3em;
-  background: linear-gradient(to bottom, #9c0734, #e40046);
+  background-color: #e40046;
   width: 15%;
   max-width: 2.8em;
   height: 5%;
@@ -184,7 +184,7 @@
   position: absolute;
   top: 0.3em;
   right: 0.3em;
-  background: linear-gradient(to bottom, #9c0734, #e40046);
+  background-color: #e40046;
   width: 15%;
   max-width: 2.8em;
   height: 5%;
@@ -201,7 +201,7 @@
   position: absolute;
   top: 0.3em;
   right: 0.3em;
-  background: linear-gradient(to bottom, #9c0734, #e40046);
+  background-color: #e40046;
   width: 15%;
   max-width: 2.8em;
   height: 5%;
@@ -218,7 +218,7 @@
   position: absolute;
   top: 0.3em;
   right: 0.3em;
-  background: linear-gradient(to bottom, #9c0734, #e40046);
+  background-color: #e40046;
   width: 15%;
   max-width: 2.8em;
   height: 5%;

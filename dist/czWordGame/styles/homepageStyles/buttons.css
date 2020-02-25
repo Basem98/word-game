@@ -39,35 +39,35 @@ button {
 .submit-solution-btn {
   border: none;
   border-radius: 0.7em;
-  background: linear-gradient(to bottom, #9c0734, #e40046);
+  background-color: #e40046;
   margin-top: 2em;
 }
 
 .signIn-form-btn {
   border: 0.1px solid #003087;
   border-radius: 0.7em;
-  background: linear-gradient(to bottom, #9c0734, #e40046);
+  background-color: #e40046;
   margin: 3em;
 }
 
 .signUp-form-btn {
   border: 0.1px solid #003087;
   border-radius: 0.7em;
-  background: linear-gradient(to bottom, #9c0734, #e40046);
+  background-color: #e40046;
   margin: 3em;
 }
 
 .play-again-btn {
   border: none;
   border-radius: 0.7em;
-  background: linear-gradient(to bottom, #9c0734, #e40046);
+  background-color: #e40046;
   margin-top: 2em;
 }
 
 .check-answer-btn {
   border: none;
   border-radius: 0.7em;
-  background: linear-gradient(to bottom, #9c0734, #e40046);
+  background-color: #e40046;
   margin-top: 2em;
 }
 
