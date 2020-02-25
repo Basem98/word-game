@@ -5,15 +5,20 @@ const enPlayBtn = document.querySelector('.play-btn-en');
 const modalContainer = document.querySelector('.game-modal-container');
 const failureModalContainer = document.querySelector('.failure-modal-container');
 const successModalContainer = document.querySelector('.success-modal-container');
+const rightAnswerModalContainer = document.querySelector('.right-answer-container');
 
 const submitBtn = document.querySelector('.submit-solution-btn');
 
 const closeGameModal = document.querySelector('.close-game-modal');
 const closeFailureModal = document.querySelector('.close-failure-modal');
 const closeSuccessModal = document.querySelector('.close-success-modal');
+const closeCheckModal = document.querySelector('.close-rightAnswer-modal');
+
+const checkAnswer = document.querySelector('.check-answer-btn');
 
 const playAgainBtnAfterFailure = document.querySelector('.failure-btn');
 const playAgainBtnAfterSuccess = document.querySelector('.success-btn');
+const playAgainBynAfterCheck = document.querySelector('.right-answer-btn');
 
 const wordDefinitionP = document.querySelector('.word-definition');
 const firstOption = document.querySelector('#sol-0');
@@ -84,6 +89,13 @@ submitBtn.addEventListener('click', () => {
   clearTimeout(gameTimer);
 });
 
+checkAnswer.addEventListener('click', () => {
+  failureModalContainer.classList.remove('active-modal');
+  rightAnswerModalContainer.classList.add('active-modal');
+  document.querySelector('.word').innerHTML = chosenWord.word;
+  document.querySelector('.meaning').innerHTML = chosenWord.meaning;
+});
+
 playAgainBtnAfterFailure.addEventListener('click', () => {
   failureModalContainer.classList.remove('active-modal');
   initialGame(currentLang);
@@ -92,6 +104,11 @@ playAgainBtnAfterFailure.addEventListener('click', () => {
 
 playAgainBtnAfterSuccess.addEventListener('click', () => {
   successModalContainer.classList.remove('active-modal');
+  initialGame(currentLang);
+});
+
+playAgainBynAfterCheck.addEventListener('click', () => {
+  rightAnswerModalContainer.classList.remove('active-modal');
   initialGame(currentLang);
 });
 
@@ -106,4 +123,8 @@ closeFailureModal.addEventListener('click', () => {
 
 closeSuccessModal.addEventListener('click', () => {
   successModalContainer.classList.remove('active-modal');
+});
+
+closeCheckModal.addEventListener('click', () => {
+  rightAnswerModalContainer.classList.remove('active-modal');
 });
