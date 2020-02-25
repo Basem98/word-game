@@ -125,7 +125,7 @@
 }
 
 .game-modal p {
-  margin: 2.5em 0.5em;
+  margin: 0.5em 1em 2.5em 0.5em;
   font-size: 1em;
   letter-spacing: 0.01em;
   word-break: normal;
@@ -229,4 +229,37 @@
   border-radius: 0.5em;
   cursor: pointer;
   font-weight: bold;
+}
+
+.progress-bar-container {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 2%;
+  width: 100%;
+  margin-top: 1.3em;
+}
+
+.progress-bar {
+  position: absolute;
+  background-color: #e40046;
+  z-index: 1;
+  opacity: 0.4;
+  height: 100%;
+  width: 100%;
+  border: none;
+  border-radius: 1em;
+}
+
+.progress {
+  position: absolute;
+  background-color: #e40046;
+  z-index: 2;
+  opacity: 2;
+  height: 100%;
+  width: 1%;
+  opacity: 1;
+  border: none;
+  border-radius: 1em;
 }

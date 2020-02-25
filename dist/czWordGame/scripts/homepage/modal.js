@@ -2,6 +2,8 @@
 const czPlayBtn = document.querySelector('.play-btn-cz');
 const enPlayBtn = document.querySelector('.play-btn-en');
 
+const progress = document.querySelector('.progress');
+
 const modalContainer = document.querySelector('.game-modal-container');
 const failureModalContainer = document.querySelector('.failure-modal-container');
 const successModalContainer = document.querySelector('.success-modal-container');
@@ -33,6 +35,7 @@ let chosenWord = {};
 let currentLang = '';
 
 let gameTimer;
+let progressBarIntervals;
 
 function initialGame(lang) {
   fetch(`/getrandomwords/${lang}`, {
@@ -54,12 +57,22 @@ function initialGame(lang) {
     })
     .then(() => {
       modalContainer.classList.add('active-modal');
+      let incrementer = 0.066;
+      progressBarIntervals = setInterval(() => {
+        if (incrementer < 99) {
+          progress.style.width = incrementer + '%';
+          incrementer += 0.066;
+        } else {
+          clearInterval(progressBarIntervals);
+        }
+      }, 10);
       gameTimer = setTimeout(() => {
         if (modalContainer.classList.contains('active-modal')) {
           modalContainer.classList.remove('active-modal');
           failureModalContainer.classList.add('active-modal');
         }
-      }, 20 * 1000);
+      }, 15 * 1000);
+
     })
     .catch(error => console.error(error));
 }
@@ -79,14 +92,16 @@ enPlayBtn.addEventListener('click', () => {
 
 submitBtn.addEventListener('click', () => {
   // Get the checked input in the radio inputs list
-  const answer = Array.from(document.getElementsByName('solution')).filter(box => box.checked)[0].defaultValue;
-  if (answer === chosenWord.word) {
+  const answer = Array.from(document.getElementsByName('solution')).filter(box => box.checked)[0];
+  if (answer && answer.defaultValue === chosenWord.word) {
     successModalContainer.classList.add('active-modal');
   } else {
     failureModalContainer.classList.add('active-modal');
   }
   modalContainer.classList.remove('active-modal');
+  clearInterval(progressBarIntervals);
   clearTimeout(gameTimer);
+  progress.style.width = 1 + '%';
 });
 
 checkAnswer.addEventListener('click', () => {
@@ -115,6 +130,9 @@ playAgainBynAfterCheck.addEventListener('click', () => {
 
 closeGameModal.addEventListener('click', () => {
   modalContainer.classList.remove('active-modal');
+  progress.style.width = 1 + '%';
+  clearInterval(progressBarIntervals);
+  clearTimeout(gameTimer);
 });
 
 closeFailureModal.addEventListener('click', () => {
