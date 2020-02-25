@@ -28,6 +28,10 @@ body {
   box-shadow: 0 0.5em 1em #e40046;
 }
 
+.welcome-panel h2 {
+  letter-spacing: 0.05em;
+}
+
 .play-info {
   color: #ffffff;
   text-align: center;

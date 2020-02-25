@@ -6,18 +6,20 @@ const signInForm = document.querySelector('.signIn-form');
 const signUpForm = document.querySelector('.signUp-form');
 
 signInBtn.addEventListener('click', () => {
-  signInForm.style.zIndex = 2;
-  signInForm.style.opacity = 1;
-  signUpForm.style.zIndex = 1;
-  signUpForm.style.opacity = 0;
+  signInForm.classList.add('active-form');
+  signInForm.classList.remove('unactive-form');
 
+  signUpForm.classList.add('unactive-form');
+  signUpForm.classList.remove('active-form');
 });
 
 signUpBtn.addEventListener('click', () => {
-  signUpForm.style.zIndex = 2;
-  signUpForm.style.opacity = 1;
-  signInForm.style.zIndex = 1;
-  signInForm.style.opacity = 0;
+  signUpForm.classList.add('active-form');
+  signUpForm.classList.remove('unactive-form');
+
+  signInForm.classList.add('unactive-form');
+  signInForm.classList.remove('active-form');
+
 });
 
 

@@ -28,25 +28,45 @@
   position: absolute;
   z-index: 2;
   opacity: 1;
+  padding: 1.5em;
   height: 100%;
   width: 100%;
+  overflow: auto;
+  transform: translateY(-100%);
+  transition: transform 0.5s ease-in-out;
 }
 
 .signUp-form {
   position: absolute;
   z-index: 1;
   opacity: 0;
+  padding: 1.5em;
   height: 100%;
   width: 100%;
+  overflow: auto;
+  transform: translateY(0);
+  transition: transform 0.5s ease-in-out;
+}
+
+.active-form {
+  z-index: 1;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.unactive-form {
+  z-index: 0;
+  opacity: 0;
+  transform: translateY(-100%);
 }
 
 .form-container input {
-  padding: 1em 3em;
+  padding: 1em 1em;
   border: none;
   border-radius: 0.3em;
-  margin: 1em;
-  height: 10%;
+  margin: 0.3em;
   width: 50%;
+  max-width: 20em;
   transition: transform 100ms ease-in-out;
 }
 
@@ -59,12 +79,12 @@ input:focus {
 }
 
 .form-container select {
-  padding: 1em 3em;
-  height: 10%;
+  padding: 1em 1em;
   width: 50%;
+  max-width: 20em;
   border: none;
   border-radius: 0.3em;
-  margin: 1em;
+  margin: 0.3em;
   transition: transform 100ms ease-in-out;
 }
 
@@ -80,5 +100,6 @@ select:focus {
   font-size: 0.65em;
   color: white;
   width: 50%;
+  max-width: 20em;
   margin: 0.1em;
 }
