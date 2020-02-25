@@ -5,10 +5,12 @@
   flex-direction: row;
   text-align: center;
   margin-top: 5em;
+  width: 50%;
+  min-width: 15em;
 }
 
 button {
-  padding: 1em 1em;
+  padding: 2% 2%;
   color: #ffffff;
   box-shadow: 0 0.5em 1em #003087;
   transition: transform 80ms ease-in-out;

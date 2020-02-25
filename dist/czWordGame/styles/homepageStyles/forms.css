@@ -11,8 +11,9 @@
   border-radius: 0.7em;
   padding: 0.5em;
   box-shadow: 0 0.5em 1em #e40046;
-  height: 60%;
-  width: 50%;
+  height: 37em;
+  width: 50vw;
+  max-width: 25em;
   overflow: auto;
 }
 
