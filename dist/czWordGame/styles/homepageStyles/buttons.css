@@ -4,15 +4,15 @@
   align-items: center;
   flex-direction: row;
   text-align: center;
-  margin-top: 80px;
+  margin-top: 5em;
 }
 
 button {
-  padding: 15px 30px;
+  padding: 1em 1em;
   color: #ffffff;
-  box-shadow: 0 6px 10px #003087;
+  box-shadow: 0 0.5em 1em #003087;
   transition: transform 80ms ease-in-out;
-  font-size: 15px;
+  font-size: 0.9em;
   font-weight: bold;
   cursor: pointer;
 }
@@ -25,50 +25,50 @@ button {
 
 .signIn-btn {
   border: 0.1px solid #003087;
-  border-radius: 10px 0 0 10px;
+  border-radius: 0.7em 0 0 0.7em;
   background: linear-gradient(to right, #9c0734, #e40046);
 }
 
 .signUp-btn {
   border: 0.1px solid #003087;
-  border-radius: 0px 10px 10px 0;
+  border-radius: 0 0.7em 0.7em 0;
   background: linear-gradient(to left, #9c0734, #e40046);
 
 }
 
 .submit-solution-btn {
   border: none;
-  border-radius: 10px;
+  border-radius: 0.7em;
   background: linear-gradient(to bottom, #9c0734, #e40046);
-  margin-top: 80px;
+  margin-top: 2em;
 }
 
 .signIn-form-btn {
   border: 0.1px solid #003087;
-  border-radius: 10px;
+  border-radius: 0.7em;
   background: linear-gradient(to bottom, #9c0734, #e40046);
-  margin: 20px;
+  margin: 3em;
 }
 
 .signUp-form-btn {
   border: 0.1px solid #003087;
-  border-radius: 10px;
+  border-radius: 0.7em;
   background: linear-gradient(to bottom, #9c0734, #e40046);
-  margin: 30px;
+  margin: 3em;
 }
 
 .play-again-btn {
   border: none;
-  border-radius: 10px;
+  border-radius: 0.7em;
   background: linear-gradient(to bottom, #9c0734, #e40046);
-  margin-top: 80px;
+  margin-top: 2em;
 }
 
 .check-answer-btn {
   border: none;
-  border-radius: 10px;
+  border-radius: 0.7em;
   background: linear-gradient(to bottom, #9c0734, #e40046);
-  margin-top: 80px;
+  margin-top: 2em;
 }
 
 button:hover {

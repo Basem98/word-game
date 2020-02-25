@@ -5,47 +5,48 @@
   align-items: center;
   text-align: center;
   flex-direction: column;
-  margin: 20px;
+  margin: 2em;
   background-color: #003087;
   border: none;
-  border-radius: 10px;
-  padding: 5px;
-  box-shadow: 0 6px 10px #e40046;
-  height: 550px;
-  width: 600px;
+  border-radius: 0.7em;
+  padding: 0.5em;
+  box-shadow: 0 0.5em 1em #e40046;
+  height: 60%;
+  width: 50%;
+  overflow: auto;
+}
+
+.form-container form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
 }
 
 .signIn-form {
-  display: flex;
   position: absolute;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  flex-direction: column;
   z-index: 2;
   opacity: 1;
   height: 100%;
-  width: 70%;
+  width: 100%;
 }
 
 .signUp-form {
-  display: flex;
   position: absolute;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  flex-direction: column;
   z-index: 1;
   opacity: 0;
   height: 100%;
-  width: 80%;
+  width: 100%;
 }
 
-input {
-  padding: 15px 45px;
+.form-container input {
+  padding: 1em 3em;
   border: none;
-  border-radius: 2px;
-  margin: 10px;
+  border-radius: 0.3em;
+  margin: 1em;
+  height: 10%;
+  width: 50%;
   transition: transform 100ms ease-in-out;
 }
 
@@ -57,12 +58,13 @@ input:focus {
   transform: scale(1.1);
 }
 
-select {
-  padding: 15px 45px;
-  width: 260px;
+.form-container select {
+  padding: 1em 3em;
+  height: 10%;
+  width: 50%;
   border: none;
-  border-radius: 2px;
-  margin: 10px;
+  border-radius: 0.3em;
+  margin: 1em;
   transition: transform 100ms ease-in-out;
 }
 
@@ -75,9 +77,8 @@ select:focus {
 }
 
 .form-container p {
-  font-size: 10px;
+  font-size: 0.65em;
   color: white;
-  width: 260px;
-  margin-left: 110px;
-  margin-top: -5px;
+  width: 50%;
+  margin: 0.1em;
 }
