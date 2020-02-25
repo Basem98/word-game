@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  background-color: #1f4283;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.welcome-panel {
+  position: relative;
+  top: 0;
+  margin: 20px;
+  text-align: center;
+  background-color: #003087;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px 5px #e40046;
+}
+
+.play-info {
+  color: #ffffff;
+  text-align: center;
+  font-size: 12px;
+  width: 500px;
+}

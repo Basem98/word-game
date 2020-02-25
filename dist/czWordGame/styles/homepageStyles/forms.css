@@ -1,0 +1,83 @@
+.form-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  margin: 20px;
+  background-color: #003087;
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0 6px 10px #e40046;
+  height: 550px;
+  width: 600px;
+}
+
+.signIn-form {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  z-index: 2;
+  opacity: 1;
+  height: 100%;
+  width: 70%;
+}
+
+.signUp-form {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  z-index: 1;
+  opacity: 0;
+  height: 100%;
+  width: 80%;
+}
+
+input {
+  padding: 15px 45px;
+  border: none;
+  border-radius: 2px;
+  margin: 10px;
+  transition: transform 100ms ease-in-out;
+}
+
+input:hover {
+  transform: scale(1.1);
+}
+
+input:focus {
+  transform: scale(1.1);
+}
+
+select {
+  padding: 15px 45px;
+  width: 260px;
+  border: none;
+  border-radius: 2px;
+  margin: 10px;
+  transition: transform 100ms ease-in-out;
+}
+
+select:hover {
+  transform: scale(1.1);
+}
+
+select:focus {
+  transform: scale(1.1);
+}
+
+.form-container p {
+  font-size: 10px;
+  color: white;
+  width: 260px;
+  margin-left: 110px;
+  margin-top: -5px;
+}
