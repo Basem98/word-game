@@ -28,7 +28,7 @@ function signup(req, res) {
     if (confirmationSent) {
       res.json({
         success: true,
-        msg: `A verification email has been sent to ${user.email}`
+        msg: `Congratz! You've signed up successfully! A verification email has been sent to ${user.email}`
       });
     }
   })
@@ -74,7 +74,7 @@ function signin(req, res) {
     .catch((error) => {
       res.json({
         success: false,
-        msg: 'There is no user with the username you have entered'
+        msg: 'There is no registered user with the username you have entered'
       });
     });
 }

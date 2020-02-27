@@ -2,9 +2,17 @@
 
 const signInBtn = document.querySelector('.signIn-btn');
 const signUpBtn = document.querySelector('.signUp-btn');
+
+const sumbitSignInForm = document.querySelector('.signIn-form-btn');
+const sumbitSignUpForm = document.querySelector('.signUp-form-btn');
+
+const signInError = document.querySelector('.signIn-errorMsg');
+const signUpError = document.querySelector('.signUp-errorMsg');
+
 const signInForm = document.querySelector('.signIn-form');
 const signUpForm = document.querySelector('.signUp-form');
 
+// Show the forms
 signInBtn.addEventListener('click', () => {
   signInForm.classList.add('active-form');
   signInForm.classList.remove('unactive-form');
@@ -37,3 +45,36 @@ this.onload = () => {
     });
   })
 }
+
+// Send the user's data to the server to sign them in
+
+sumbitSignInForm.addEventListener('click', () => {
+  const userData = {
+    username: document.getElementById('signIn-username').value,
+    password: document.getElementById('signIn-password').value
+  }
+  if (userData.username && userData.password) {
+    fetch('/signin', {
+      method: 'POST',
+      body: JSON.stringify(userData),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then((res) => {
+        if (res && res.success) {
+          window.location = '/dashboard.html';
+        } else {
+          signInError.innerHTML = res.msg;
+          signInError.style.visibility = 'visible';
+        }
+      })
+      .catch(error => console.error(error));
+  }
+  else {
+    signInError.innerHTML = 'Please fill all the required fields';
+    signInError.style.visibility = 'visible';
+  }
+
+});
