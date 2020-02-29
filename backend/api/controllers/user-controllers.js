@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const path = require('path');
 
 const config = require('../../config/envConfig');
 const {
@@ -28,7 +29,7 @@ function signup(req, res) {
     if (confirmationSent) {
       res.json({
         success: true,
-        msg: `Congratz! You've signed up successfully! A verification email has been sent to ${user.email}`
+        msg: `Congratz! You've signed up successfully! A verification email has been sent to ${user.email}, as you need to verify your email before signing in.`
       });
     }
   })
@@ -81,16 +82,13 @@ function signin(req, res) {
 
 async function verifyUser(req, res) {
   try {
-    const { email, token } = req.body;
+    const { token, email } = req.params;
     const isVerificationConfirmed = await isTokenVerified(token);
-    const currentUser = await getUserByEmail(email);
+    let currentUser = await getUserByEmail(email);
     if (isVerificationConfirmed && currentUser && !currentUser.isVerified) {
       currentUser.isVerified = true;
       currentUser.save();
-      res.json({
-        success: true,
-        user: currentUser
-      });
+      res.redirect('https://czenwordgame1.herokuapp.com/confirmVerification.html');
     } else {
       res.json({
         success: false,

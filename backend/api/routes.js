@@ -26,7 +26,7 @@ const router = express.Router();
 // User collection endpoints:
 router.post('/signup', validateSignup, existsInDb, signup);
 router.post('/signin', signin);
-router.post('/confirmverification', verifyUser);
+router.get('/confirmverification/:token/:email', verifyUser);
 router.post('/resendverification', resendVerification);
 router.get('/getuserdata', passport.authenticate('jwt', { session: false }), getUserData);
 router.get('/gettopten', passport.authenticate('jwt', { session: false }), getTopTenUsers);

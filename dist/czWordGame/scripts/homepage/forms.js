@@ -12,20 +12,63 @@ const signUpError = document.querySelector('.signUp-errorMsg');
 const signInForm = document.querySelector('.signIn-form');
 const signUpForm = document.querySelector('.signUp-form');
 
+// Helper functions
+function validateNewUserData(userData) {
+  if (
+    userData.fullName
+    && userData.country
+    && userData.email
+    && userData.username
+    && userData.password
+  ) {
+    userData.fullName = userData.fullName.replace(/^\s*(\w+)\s{1,}(\w+)\s*$/, '$1 $2')
+    userData.fullName = userData.fullName.split(' ').map(word => {
+      return `${word[0].toUpperCase()}${word.slice(1)}`;
+    }
+    ).join(' ');
+
+    if (!userData.email.match(/^\w+\.*\w+\@\w+(\.com|\.net)$/g)) {
+      signUpError.innerHTML = 'Please use a proper email address that looks like this: example@something.com or example@something.net';
+      signUpError.style.visibility = 'visible';
+      return false;
+    }
+
+    if (!userData.username.match(/^\w{6,12}/g)) {
+      signUpError.innerHTML = 'Your username must be between 6 and 12 characters long and it cannot have any special characters or white spaces';
+      signUpError.style.visibility = 'visible';
+      return false;
+    }
+
+    if (!(userData.password.length >= 8) || !(userData.password.length <= 20)) {
+      signUpError.innerHTML = 'Your password must be between 8 and 20 characters long';
+      signUpError.style.visibility = 'visible';
+      return false;
+    }
+    signUpError.innerHTML = '';
+    signUpError.style.visibility = 'hidden';
+    return true;
+  } else {
+    signUpError.innerHTML = 'Please fill all the required fields';
+    signUpError.style.visibility = 'visible';
+    return false;
+  }
+}
+
+
 // Show the forms
 signInBtn.addEventListener('click', () => {
   signInForm.classList.add('active-form');
-  signInForm.classList.remove('unactive-form');
+  signInForm.classList.remove('unactive-signIn-form');
 
-  signUpForm.classList.add('unactive-form');
+  signUpForm.classList.add('unactive-signUp-form');
   signUpForm.classList.remove('active-form');
 });
 
 signUpBtn.addEventListener('click', () => {
   signUpForm.classList.add('active-form');
-  signUpForm.classList.remove('unactive-form');
+  signUpForm.classList.remove('unactive-signUp-form');
 
-  signInForm.classList.add('unactive-form');
+  signInForm.classList.add('unactive-signIn-form');
   signInForm.classList.remove('active-form');
 
 });
@@ -77,4 +120,30 @@ sumbitSignInForm.addEventListener('click', () => {
     signInError.style.visibility = 'visible';
   }
 
+});
+
+// Send the new user's data to sign them up
+
+sumbitSignUpForm.addEventListener('click', () => {
+  const userData = {
+    fullName: document.getElementsByName('fullName')[0].value,
+    country: document.getElementsByName('country')[0].value,
+    email: document.getElementsByName('email')[0].value,
+    username: document.getElementById('signUp-username').value,
+    password: document.getElementById('signUp-password').value
+  }
+  if (validateNewUserData(userData)) {
+    fetch('/signup', {
+      method: 'POST',
+      body: JSON.stringify(userData),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(res => {
+      signUpError.innerHTML = res.msg;
+      signUpError.style.visibility = 'visible';
+    })
+  }
 });

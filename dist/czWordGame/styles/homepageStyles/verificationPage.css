@@ -1,3 +1,8 @@
+h1 {
+  color: #ffffff;
+  letter-spacing: 0.01em;
+}
+
 .form-container {
   display: flex;
   position: relative;
@@ -30,38 +35,6 @@
   overflow: auto;
 }
 
-.signIn-form {
-  z-index: 2;
-  opacity: 1;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
-}
-
-.signUp-form {
-  z-index: 1;
-  opacity: 0;
-  transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
-}
-
-.active-form {
-  z-index: 1;
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.unactive-signIn-form {
-  z-index: 0;
-  opacity: 0;
-  transform: translateX(-100%);
-}
-
-.unactive-signUp-form {
-  z-index: 0;
-  opacity: 0;
-  transform: translateX(100%);
-}
-
 .form-container input {
   padding: 1em 1em;
   border: none;
@@ -80,27 +53,9 @@ input:focus {
   transform: scale(1.1);
 }
 
-.form-container select {
-  padding: 1em 1em;
-  width: 50%;
-  max-width: 20em;
-  border: none;
-  border-radius: 0.3em;
-  margin: 0.3em;
-  transition: transform 100ms ease-in-out;
-}
-
-select:hover {
-  transform: scale(1.1);
-}
-
-select:focus {
-  transform: scale(1.1);
-}
-
 .form-container p {
   font-size: 0.65em;
-  color: #ffffff;
+  color: white;
   width: 50%;
   max-width: 20em;
   margin: 0.1em;

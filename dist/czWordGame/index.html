@@ -40,16 +40,17 @@
       </form>
 
       <form class="signUp-form">
-        <input type="text" name="fullName" placeholder="Full Name *" required>
-        <select name="country" id="country-list" required>
+        <input type="text" name="fullName" placeholder="Full Name *">
+        <p>- Only your first and last name</p>
+        <select name="country" id="country-list">
           <option>Select Country *</option>
         </select>
-        <input type="email" name="email" placeholder="Email *" required>
-        <input type="text" name="username" placeholder="Username *" pattern="/^\w{6,12}/g" required>
+        <input type="email" name="email" placeholder="Email *">
+        <input type="text" id="signUp-username" name="username" placeholder="Username *">
         <p>- Your username must be 6-12 characters long and it can only consist of alphanumeric characters</p>
-        <input type="password" name="password" placeholder="Password *" minlength="8" maxlength="20" required>
+        <input type="password" id="signUp-password" name="password" placeholder="Password *">
         <p>- Your password must be 8-20 characters long</p>
-        <button class="signUp-form-btn">Sign Up</button>
+        <button type="button" class="signUp-form-btn">Sign Up</button>
         <p class="errorMsg signUp-errorMsg"></p>
       </form>
   </div>
