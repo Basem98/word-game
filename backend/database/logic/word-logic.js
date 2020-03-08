@@ -32,7 +32,6 @@ async function getRandomWords(lang, userId) {
       });
       if (!alreadyExists && !chosenWords.includes(allWords[randomIndex])) {
         chosenWords.push(allWords[randomIndex]);
-        allWords.splice(i, 1);
       }
     }
     return chosenWords;

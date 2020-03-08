@@ -7,11 +7,46 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Dashboard</title>
   <link rel="icon" href="https://images3.alphacoders.com/102/thumbbig-1029397.jpg">
-  <link rel="stylesheet" href="./styles/homepageStyles/buttons.css">
-  <link rel="stylesheet" href="./styles/homepageStyles/modal.css">
+  <link rel="stylesheet" href="./styles/dashboardStyles/dashboardButtons.css">
+  <link rel="stylesheet" href="./styles/dashboardStyles/dashboardMain.css">
 </head>
 
 <body>
-  <h1>Hello, mr. User!</h1>
+  <div class="left-container">
+    <div class="profile">
+      <p>Username:</p>
+      <p>Score:</p>
+      <p>Title:</p>
+      <p>Email:</p>
+    </div>
+    <div class="top-players">
+      <h4>Top 5 players</h4>
+      <p>Basem</p>
+      <p>David</p>
+      <p>Sarah</p>
+    </div>
+  </div>
+  <div class="right-container">
+    <div class="buttons-container">
+      <button class="play-btn-cz">Play Now (Czech)</button>
+      <button class="play-btn-en">Play Now (English)</button>
+    </div>
+    <div class="words-history">
+      <table class="words-table">
+        <thead>
+          <th>Word</th>
+          <th>Meaning</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hey</td>
+            <td>Welcoming word</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript" src="./scripts/dashboard/dashboardMain.js"></script>
 </body>
+
 </html>

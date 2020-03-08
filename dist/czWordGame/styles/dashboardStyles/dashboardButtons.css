@@ -1,0 +1,35 @@
+button {
+  padding: 2% 2%;
+  color: #ffffff;
+  box-shadow: 0 0.5em 1em #003087;
+  transition: transform 80ms ease-in-out;
+  font-size: 0.9em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.play-btn-cz {
+  border: none;
+  border-radius: 0.7em 0 0 0.7em;
+  background: linear-gradient(to right, #9c0734, #e40046);
+}
+
+.play-btn-en {
+  border: none;
+  border-radius: 0 0.7em 0.7em 0;
+  background: linear-gradient(to left, #9c0734, #e40046);
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+button:active {
+  outline: none;
+  opacity: 0.5;
+}
+
+button:focus {
+  outline: none;
+}
+

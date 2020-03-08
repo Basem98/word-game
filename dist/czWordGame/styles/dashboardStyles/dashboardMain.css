@@ -1,0 +1,88 @@
+body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  flex-direction: row;
+  width: 90vw;
+  height: 90vh;
+  min-height: 58.65em;
+  margin-top: -0.1em;
+  margin-bottom: -0.1em;
+  background-color: #1f4283;
+  font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+}
+
+.left-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  box-shadow: 0 0.5em 1em #1f4283;
+  border-right: 0.5em solid #e40046;
+  margin-left: -0.5em;
+  width: 30%;
+  height: 100%;
+}
+
+.right-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  margin-right: -0.5em;
+  width: 70%;
+  height: 100%;
+}
+
+.profile {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  border-bottom: 0.3em solid #e40046;
+  height: 25%;
+  width: 100%;
+}
+
+.top-players {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  height: 75%;
+  width: 100%;
+}
+
+.buttons-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  text-align: center;
+  margin-top: 5em;
+  height: 5%;
+  width: 100%;
+}
+
+.words-history {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  height: 95%;
+  width: 100%;
+}
