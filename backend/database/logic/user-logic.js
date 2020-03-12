@@ -113,18 +113,18 @@ async function getUserByEmail(email) {
   }
 }
 
-// The query that returns a list of the top ten players across the whole game
+// The query that returns a list of the top five players across the whole game
 async function sortUsersByScore() {
   try {
     const sortedUsers = await User.find().sort({'score': 'desc'});
     if (sortedUsers) {
-      const topTen = [];
-      for (let i = 0; i < 10; i++) {
+      const topFive = [];
+      for (let i = 0; i < 5; i++) {
         if (sortedUsers[i]) {
-        topTen[topTen.length] = sortedUsers[i];
+          topFive[topFive.length] = sortedUsers[i];
         }
       }
-      return topTen;
+      return topFive;
     }
   } catch (error) {
 

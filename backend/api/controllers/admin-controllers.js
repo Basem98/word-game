@@ -12,7 +12,7 @@ const {
 function cleanDb(req, res) {
   deleteAll().then((isDeleted) => {
     if (isDeleted) {
-      res.json({
+      res.status(200).json({
         success: true
       });
     }
@@ -31,7 +31,7 @@ function addWord(req, res) {
   const { word, meaning, lang } = req.body;
   insertWord(word, meaning, lang).then((isInserted) => {
     if (isInserted) {
-      res.json({
+      res.status(200).json({
         success: true
       });
     } else {

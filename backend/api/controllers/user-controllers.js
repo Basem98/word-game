@@ -1,8 +1,5 @@
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const path = require('path');
 
-const config = require('../../config/envConfig');
 const {
   getRandomWords,
   getRandomWordsForNonMembers
@@ -27,7 +24,7 @@ function signup(req, res) {
   createUser(newUser).then(async (user) => {
     const confirmationSent = await sendConfirmationEmail(user.email, user._id, user.fullName);
     if (confirmationSent) {
-      res.json({
+      res.status(200).json({
         success: true,
         msg: `Congratz! You've signed up successfully! A verification email has been sent to ${user.email}, as you need to verify your email before signing in.`
       });
@@ -48,15 +45,11 @@ function signin(req, res) {
     const matchedPass = await bcrypt.compare(password, userData.password);
     if (matchedPass) {
       userData.password = undefined;
-      const jwtPayload = { id: userData._id };
-      const token = jwt.sign(jwtPayload, config.APP.SECRET_KEY, {
-        expiresIn: 8 * 3600
-      });
+      req.session.currentUser = userData;
       if (user.isVerified) {
-        res.json({
+        res.status(200).json({
           success: true,
-          user: userData,
-          token
+          user: userData
         });
       } else {
         res.json({
@@ -88,7 +81,7 @@ async function verifyUser(req, res) {
     if (isVerificationConfirmed && currentUser && !currentUser.isVerified) {
       currentUser.isVerified = true;
       currentUser.save();
-      res.redirect('https://czenwordgame1.herokuapp.com/confirmVerification.html');
+      res.status(200).redirect('https://czenwordgame1.herokuapp.com/confirmVerification.html');
     } else {
       res.json({
         success: false,
@@ -108,7 +101,7 @@ function resendVerification(req, res) {
   getUserByEmail(email).then(async (currentUser) => {
     const confirmationSent = await sendConfirmationEmail(currentUser.email, currentUser._id, currentUser.fullName);
     if (confirmationSent) {
-      res.json({
+      res.status(200).json({
         success: true,
         msg: `A verification email has been sent to ${currentUser.email}`
       });
@@ -132,7 +125,7 @@ function getUserData(req, res) {
   getUserById(userID).then((user) => {
     const userData = user;
     userData.password = undefined;
-    res.json({
+    res.status(200).json({
       success: true,
       userData
     });
@@ -150,7 +143,7 @@ function updateGameInfo(req, res) {
   updateScoreAndTitle(id, score).then((updatedData) => {
     const updatedUser = updatedData;
     updatedUser.password = undefined;
-    res.json({
+    res.status(200).json({
       success: true,
       currentUser: updatedUser
     });
@@ -167,7 +160,7 @@ function getWords(req, res) {
   const lang = req.params.lang;
   const { userId } = req.body;
   getRandomWords(lang, userId).then((chosenWords) => {
-    res.json({
+    res.status(200).json({
       success: true,
       chosenWords
     });
@@ -184,23 +177,23 @@ function getWords(req, res) {
 function getWordsForNonMembers(req, res) {
   const lang = req.params.lang;
   getRandomWordsForNonMembers(lang).then((chosenWords) => {
-    res.json({
+    res.status(200).json({
       success: true,
       chosenWords
     });
   })
-  .catch((error) => {
-    res.json({
-      success: false,
-      msg: error
+    .catch((error) => {
+      res.json({
+        success: false,
+        msg: error
+      });
     });
-  });
 }
 
 function updateGameHistory(req, res) {
   const { id, newWord } = req.body;
   updateCurrentUserHistory(id, newWord).then((updatedUser) => {
-    res.json({
+    res.status(200).json({
       success: true,
       currentUser: updatedUser
     });
@@ -212,11 +205,11 @@ function updateGameHistory(req, res) {
   });
 }
 
-function getTopTenUsers(req, res) {
-  sortUsersByScore().then((topTenUsers) => {
-    res.json({
+function getTopFiveUsers(req, res) {
+  sortUsersByScore().then((topFiveUsers) => {
+    res.status(200).json({
       success: true,
-      topTenUsers
+      topFiveUsers
     });
   })
     .catch((error) => {
@@ -225,6 +218,21 @@ function getTopTenUsers(req, res) {
         msg: error
       });
     });
+}
+
+function authenticateUser(req, res) {
+  let currentSessionID = req.header('Cookie');
+  currentSessionID = currentSessionID.slice(currentSessionID.indexOf('A') + 1, currentSessionID.lastIndexOf('.'));
+  if (currentSessionID === req.session.id) {
+    res.status(200).json({
+      isAuthorized: true
+    });
+  } else {
+    res.status(401).json({
+      isAuthorized: false,
+      msg: 'You have to sign in to access the dashboard'
+    });
+  }
 }
 
 module.exports = {
@@ -237,5 +245,6 @@ module.exports = {
   updateGameHistory,
   getWords,
   getWordsForNonMembers,
-  getTopTenUsers
+  getTopFiveUsers,
+  authenticateUser
 };

@@ -1,25 +1,47 @@
 const express = require('express');
-const passport = require('passport');
-const { establishAuthStrategy } = require('./api/authentication/jwtStrategy');
 const config = require('./config/envConfig');
 const connectToDatabase = require('./config/connectToDb');
+
 const path = require('path');
 
-const strategy = establishAuthStrategy().generate();
+const { v4: uuidV4 } = require('uuid');
+const session = require('express-session');
+const MongoStore = require('connect-mongodb-session')(session);
+const sessionStore = new MongoStore({
+  uri: config.DB.URL,
+  collection: 'sessions'
+});
+
 const server = express();
 
 // The Middleware Layers
 
-// The function that loads the whole dist folder, aka the application after it's built, as a static folder to make the UI and the loading times faster
+// The static folder (The client-side)
 server.use(express.static(path.join(__dirname, '../dist/czWordGame')));
-
-// The Authentication and authorization layer
-passport.use(strategy);
-server.use(passport.initialize());
 
 // The Parsing Layer
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
+
+// The Authentication and authorization layer
+server.use(session({
+  secret: config.APP.SECRET_KEY,
+  genid: () =>  uuidV4(),
+  saveUninitialized: false,
+  resave: false,
+  rolling: false,
+  cookie: {
+    httpOnly: false,
+    sameSite: true,
+    secure: false,
+    expires: 24 * 60 * 60 * 1000
+  },
+  store: sessionStore,
+}));
+
+sessionStore.on('error', (error) => {
+  console.error(error);
+});
 
 // The router
 server.use('/', require('./api/routes'));

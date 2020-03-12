@@ -107,6 +107,7 @@ sumbitSignInForm.addEventListener('click', () => {
       .then(res => res.json())
       .then((res) => {
         if (res && res.success) {
+          localStorage.setItem('currentUser', JSON.stringify(res.user));
           window.location = '/dashboard.html';
         } else {
           signInError.innerHTML = res.msg;
