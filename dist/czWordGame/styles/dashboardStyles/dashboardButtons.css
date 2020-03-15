@@ -6,6 +6,7 @@ button {
   font-size: 0.9em;
   font-weight: bold;
   cursor: pointer;
+  height: 2.8em;
 }
 
 .play-btn-cz {
@@ -18,6 +19,33 @@ button {
   border: 0.1px solid #003087;
   border-radius: 0 0.7em 0.7em 0;
   background: linear-gradient(to left, #9c0734, #e40046);
+}
+
+.submit-solution-btn {
+  border: none;
+  border-radius: 0.7em;
+  background-color: #e40046;
+  margin-top: 2em;
+}
+
+.play-again-btn {
+  border: none;
+  border-radius: 0.7em;
+  background-color: #e40046;
+  margin-top: 2em;
+}
+
+.check-answer-btn {
+  border: none;
+  border-radius: 0.7em;
+  background-color: #e40046;
+  margin-top: 2em;
+}
+
+.signOut-btn {
+  border: 0.1px solid #003087;
+  border-radius: 0.7em;
+  background: linear-gradient(to bottom, #9c0734, #e40046);
 }
 
 button:hover {

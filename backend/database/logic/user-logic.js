@@ -9,13 +9,13 @@ const Word = require('../models/Word');
 function setTitle(score) {
   let title;
   if (score <= 250) {
-    title = 'Absolute Beginner';
-  } else if (250 <= score && score < 500) {
-    title = 'Beginner';
-  } else if (500 <= score && score < 1000) {
     title = 'Absolute Amateur';
-  } else if (1000 <= score && score < 1500) {
+  } else if (250 <= score && score < 500) {
     title = 'Amateur';
+  } else if (500 <= score && score < 1000) {
+    title = 'Absolute Beginner';
+  } else if (1000 <= score && score < 1500) {
+    title = 'Beginner';
   } else if (1500 <= score && score < 2250) {
     title = 'Semi-Professional';
   } else if (2250 <= score && score < 3250) {

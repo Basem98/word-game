@@ -11,6 +11,7 @@ const {
 const {
   signup,
   signin,
+  signOut,
   verifyUser,
   resendVerification,
   getUserData,
@@ -27,6 +28,7 @@ const router = express.Router();
 // User collection endpoints:
 router.post('/signup', validateSignup, existsInDb, signup);
 router.post('/signin', signin);
+router.get('/signout', signOut);
 router.get('/confirmverification/:token/:email', verifyUser);
 router.post('/resendverification', resendVerification);
 router.get('/getuserdata', authenticate, getUserData);

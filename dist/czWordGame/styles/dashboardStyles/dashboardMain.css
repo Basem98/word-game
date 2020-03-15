@@ -5,6 +5,7 @@ body {
   text-align: center;
   flex-direction: row;
   width: 90vw;
+  min-width: 50em;
   height: 90vh;
   min-height: 58.65em;
   margin-top: -0.1em;
@@ -22,8 +23,9 @@ body {
   align-items: center;
   text-align: center;
   flex-direction: column;
-  box-shadow: 0 0.5em 1em #1f4283;
-  border-right: 0.5em solid #e40046;
+  background-color: #003087;
+  box-shadow: 0.2em 0.5em 1em #e40046;
+  border-right: 1em solid #e40046;
   margin-left: -0.5em;
   width: 30%;
   height: 100%;
@@ -32,7 +34,7 @@ body {
 .right-container {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   text-align: center;
   flex-direction: column;
@@ -47,8 +49,8 @@ body {
   align-items: center;
   text-align: center;
   flex-direction: column;
-  border-bottom: 0.3em solid #e40046;
-  height: 25%;
+  border-bottom: 0.5em solid #e40046;
+  height: 30%;
   width: 100%;
 }
 
@@ -58,7 +60,7 @@ body {
   align-items: center;
   text-align: center;
   flex-direction: column;
-  height: 75%;
+  height: 70%;
   width: 100%;
 }
 
@@ -76,32 +78,45 @@ body {
 }
 
 .words-history {
-  display: flex;
-  justify-content: start;
-  align-items: center;
   text-align: center;
-  flex-direction: column;
-  height: 95%;
-  margin-top: 5em;
-  width: 100%;
-}
-
-.words-table {
+  max-height: 40em;
+  overflow: auto;
+  margin-top: 1em;
+  width: 80%;
+  box-shadow: 0 0.2em 1em #e40046;
+  background-color: #003087;
+  scrollbar-width: thin;
   visibility: hidden;
   opacity: 0;
 }
 
+
 table {
   border-collapse: collapse;
-  box-shadow: 0 0.5em 1em #e40046;
+  width: 100%;
 }
 
 th {
-  border: 0.2em solid #e40046;
+  position: sticky;
+  top: -0.06em;
+  border: 0.1em solid #1f4283;
   padding: 1em;
+  background-color: #e40046;
 }
 
 td {
-  border: 0.2em solid #e40046;
+  border: 0.1em solid #e40046;
   padding: 0.5em;
+}
+
+::-webkit-scrollbar {
+  width: 0.35em;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #e4004496;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #e40046;
 }

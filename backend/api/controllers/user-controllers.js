@@ -73,6 +73,16 @@ function signin(req, res) {
     });
 }
 
+function signOut(req, res) {
+  let currentSessionID = req.header('Cookie');
+  currentSessionID = currentSessionID.slice(currentSessionID.indexOf('A') + 1, currentSessionID.lastIndexOf('.'));
+  req.session.destroy();
+  res.status(200).json({
+    success: true,
+    msg: 'You have been logged out successfully!'
+  });
+}
+
 async function verifyUser(req, res) {
   try {
     const { token, email } = req.params;
@@ -81,7 +91,7 @@ async function verifyUser(req, res) {
     if (isVerificationConfirmed && currentUser && !currentUser.isVerified) {
       currentUser.isVerified = true;
       currentUser.save();
-      res.status(200).redirect('https://czenwordgame1.herokuapp.com/confirmVerification.html');
+      res.status(200).redirect('/confirmVerification.html');
     } else {
       res.json({
         success: false,
@@ -222,7 +232,7 @@ function getTopFiveUsers(req, res) {
 
 function authenticateUser(req, res) {
   let currentSessionID = req.header('Cookie');
-  currentSessionID = currentSessionID.slice(currentSessionID.indexOf('A') + 1, currentSessionID.lastIndexOf('.'));
+  currentSessionID = currentSessionID ? currentSessionID.slice(currentSessionID.indexOf('A') + 1, currentSessionID.lastIndexOf('.')) : undefined;
   if (currentSessionID === req.session.id) {
     res.status(200).json({
       isAuthorized: true
@@ -238,6 +248,7 @@ function authenticateUser(req, res) {
 module.exports = {
   signup,
   signin,
+  signOut,
   verifyUser,
   resendVerification,
   getUserData,

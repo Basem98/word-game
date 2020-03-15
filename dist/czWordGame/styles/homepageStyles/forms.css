@@ -12,7 +12,8 @@
   padding: 0.5em;
   box-shadow: 0 0.5em 1em #e40046;
   height: 37em;
-  width: 50vw;
+  width: 45vw;
+  min-width: 15.625em;
   max-width: 25em;
   overflow: hidden;
 }
@@ -69,6 +70,7 @@
   margin: 0.3em;
   width: 50%;
   max-width: 20em;
+  min-width: 9.125em;
   transition: transform 100ms ease-in-out;
 }
 
@@ -82,8 +84,9 @@ input:focus {
 
 .form-container select {
   padding: 1em 1em;
-  width: 50%;
+  width: 56.65%;
   max-width: 20em;
+  min-width: 12em;
   border: none;
   border-radius: 0.3em;
   margin: 0.3em;
@@ -99,7 +102,7 @@ select:focus {
 }
 
 .form-container p {
-  font-size: 0.65em;
+  font-size: 0.8em;
   color: #ffffff;
   width: 50%;
   max-width: 20em;
