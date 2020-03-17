@@ -38,7 +38,7 @@ sumbitSignInForm.addEventListener('click', () => {
 });
 
 this.onkeyup = (event) => {
-  if (event.key = 'Enter') {
+  if (event.key === 'Enter') {
     signIn();
   }
 }
