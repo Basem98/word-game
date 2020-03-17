@@ -1,22 +1,19 @@
-
-
 body {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
   flex-direction: column;
   width: 90vw;
   background-color: #1f4283;
   margin-left: 3.5%;
+  scrollbar-width: thin;
 }
 
-.welcome-panel {
+.title {
   position: relative;
   top: 0;
   margin: 1em;
-  text-align: center;
-  width: 70%;
+  width: 20%;
   min-width: 17.5em;
   max-width: 50em;
   background-color: #003087;
@@ -25,19 +22,49 @@ body {
   border: none;
   border-radius: 0.7em;
   box-shadow: 0 0.5em 1em #e40046;
-}
-
-.welcome-panel h2 {
-  letter-spacing: 0.05em;
-  font-size: 1.5rem;
-}
-
-.play-info {
-  color: #ffffff;
   text-align: center;
-  font-size: 0.9em;
-  width: 35%;
-  min-width: 17.5em;
+}
+
+h2 {
+  color: #e40046;
+}
+
+.description {
+  display: flex;
+  align-items: flex-start;
+  justify-content: start;
+  flex-direction: column;
+  margin-top: 1em;
+  color: #ffffff;
+  font-size: 1.2em;
+}
+
+.game-description {
+  border-bottom: 0.1em solid #e40046;
+}
+
+.dev-description {
+  margin-top: 0.5em;
+  border-bottom: 0.1em solid #e40046;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+a:hover {
+  color: #e40046;
+  transform: scale(1.05);
+}
+
+a:visited {
+  outline: none;
+  text-decoration: none;
+}
+
+li {
+  margin-top: 0.35em;
 }
 
 ::-webkit-scrollbar-track{

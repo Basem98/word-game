@@ -90,8 +90,7 @@ this.onload = () => {
 }
 
 // Send the user's data to the server to sign them in
-
-sumbitSignInForm.addEventListener('click', () => {
+function signIn() {
   const userData = {
     username: document.getElementById('signIn-username').value,
     password: document.getElementById('signIn-password').value
@@ -122,11 +121,14 @@ sumbitSignInForm.addEventListener('click', () => {
     signInError.style.visibility = 'visible';
   }
 
+}
+sumbitSignInForm.addEventListener('click', () => {
+  signIn();
 });
 
-// Send the new user's data to sign them up
 
-sumbitSignUpForm.addEventListener('click', () => {
+// Send the new user's data to sign them up
+function signUp() {
   const userData = {
     fullName: document.getElementsByName('fullName')[0].value,
     country: document.getElementsByName('country')[0].value,
@@ -142,10 +144,25 @@ sumbitSignUpForm.addEventListener('click', () => {
         'Content-Type': 'application/json'
       }
     })
-    .then(res => res.json())
-    .then(res => {
-      signUpError.innerHTML = res.msg;
-      signUpError.style.visibility = 'visible';
-    })
+      .then(res => res.json())
+      .then(res => {
+        signUpError.innerHTML = res.msg;
+        signUpError.style.visibility = 'visible';
+      })
   }
+}
+sumbitSignUpForm.addEventListener('click', () => {
+  signUp();
 });
+
+this.onkeyup = (event) => {
+  if (event.key === 'Enter') {
+    if (signInForm.classList.contains('active-form')) {
+      signIn();
+    } else if (signUpForm.classList.contains('active-form')) {
+      signUp();
+    } else {
+      event.preventDefault();
+    }
+  }
+}
