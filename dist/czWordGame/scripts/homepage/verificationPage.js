@@ -2,7 +2,7 @@ const sumbitSignInForm = document.querySelector('.signIn-form-btn');
 const signInError = document.querySelector('.signIn-errorMsg');
 const signInForm = document.querySelector('.signIn-form');
 
-sumbitSignInForm.addEventListener('click', () => {
+function signIn() {
   const userData = {
     username: document.getElementById('signIn-username').value,
     password: document.getElementById('signIn-password').value
@@ -32,5 +32,13 @@ sumbitSignInForm.addEventListener('click', () => {
     signInError.innerHTML = 'Please fill all the required fields';
     signInError.style.visibility = 'visible';
   }
-
+}
+sumbitSignInForm.addEventListener('click', () => {
+  signIn();
 });
+
+this.onkeyup = (event) => {
+  if (event.key = 'Enter') {
+    signIn();
+  }
+}
