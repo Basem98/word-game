@@ -38,7 +38,7 @@ let gameTimer;
 let progressBarIntervals;
 
 function initialGame(lang) {
-  fetch(`/getrandomwords/${lang}`, {
+  return fetch(`/getrandomwords/${lang}`, {
     method: 'GET'
   })
     .then(res => res.json())
@@ -79,14 +79,20 @@ function initialGame(lang) {
 
 
 czPlayBtn.addEventListener('click', () => {
+  czPlayBtn.disabled = true;
   currentLang = 'cz';
-  initialGame(currentLang);
+  initialGame(currentLang).then(() => {
+    czPlayBtn.disabled = false;
+  })
 
 });
 
 enPlayBtn.addEventListener('click', () => {
+  enPlayBtn.disabled = true;
   currentLang = 'en';
-  initialGame(currentLang);
+  initialGame(currentLang).then(() => {
+    enPlayBtn.disabled = false;
+  })
 
 });
 
