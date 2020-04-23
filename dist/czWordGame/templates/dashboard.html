@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Dashboard</title>
+  <link rel="icon" href="https://images3.alphacoders.com/102/thumbbig-1029397.jpg">
+  <link rel="stylesheet" href="./styles/dashboardStyles/dashboardButtons.css">
+  <link rel="stylesheet" href="./styles/dashboardStyles/dashboardMain.css">
+  <link rel="stylesheet" href="./styles/dashboardStyles/dashboard-relatedModals.css">
+  <link rel="stylesheet" href="./styles/homepageStyles/modal.css">
+</head>
+
+<body>
+  <!-- The profile and the top 5 list -->
+  <div class="left-container">
+    <div class="profile">
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <button class="signOut-btn">Sign Out</button>
+    </div>
+    <div class="top-players">
+      <h2>Top 5 players</h2>
+    </div>
+  </div>
+
+  <!-- The game buttons and the words table -->
+  <div class="right-container">
+    <div class="buttons-container">
+      <button class="play-btn-cz">Play Now (Czech)</button>
+      <button class="play-btn-en">Play Now (English)</button>
+    </div>
+    <div class="words-history">
+      <table class="words-table">
+        <thead>
+          <tr>
+            <th>Language</th>
+            <th>Word</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Game Modals -->
+  <div class="game-modal-container">
+    <div class="game-modal">
+      <div class="progress-bar-container">
+        <div class="progress-bar">
+        </div>
+        <div class="progress">
+        </div>
+      </div>
+      <p class="word-definition"></p>
+      <input type="radio" id="sol-0" name="solution">
+      <label for="sol-0" class="label-0"></label>
+      <br>
+      <input type="radio" id="sol-1" name="solution">
+      <label for="sol-1" class="label-1"></label>
+      <br>
+      <input type="radio" id="sol-2" name="solution">
+      <label for="sol-2" class="label-2"></label>
+      <br>
+      <button class="submit-solution-btn">Submit Answer</button>
+      <span class="close-game-modal">X</span>
+    </div>
+  </div>
+  <div class="failure-modal-container">
+    <div class="failure-modal">
+      <p>Unfortunately, either your time is out or your answer is wrong</p>
+      <div class="failure-btns-container">
+        <button class="play-again-btn failure-btn">Play Again</button>
+        <button class="check-answer-btn">Check Answer</button>
+      </div>
+      <span class="close-failure-modal">X</span>
+    </div>
+  </div>
+  <div class="success-modal-container">
+    <div class="success-modal">
+      <p class="success-msg"></p>
+      <div class="success-btns-container">
+        <button class="play-again-btn success-btn">Play Again</button>
+        <span class="close-success-modal">X</span>
+      </div>
+    </div>
+  </div>
+  <div class="right-answer-container">
+    <div class="right-answer-modal">
+      <h2 class="word"></h2>
+      <p class="meaning"></p>
+      <button class="play-again-btn right-answer-btn">Play Again</button>
+      <span class="close-rightAnswer-modal">X</span>
+    </div>
+  </div>
+  <div class="title-promotion-container">
+    <div class="title-promotion-modal">
+      <p class="promotion-msg"></p>
+      <button class="play-again-btn continue-playing-btn">Continue Playing</button>
+      <span class="close-promotionMsg-modal">X</span>
+    </div>
+  </div>
+  <script type="text/javascript" src="./scripts/dashboard/dashboardMain.js"></script>
+  <script type="text/javascript" src="./scripts/dashboard/dashboardModals.js"></script>
+</body>
+
+</html>
