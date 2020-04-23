@@ -20,8 +20,10 @@
     <h1>Welcome to the vintage-inspired word game</h1>
   </div>
   <div class="play-info">
-    <p>You can play without an account or you can create an account and enjoy a leveling system that gives you a title based on
-      your knowledge, revisit all the words you have solved before, compete with the top 5 players in the game and never have to solve the same word twice.</p>
+    <p>You can play without an account or you can create an account and enjoy a leveling system that gives you a title
+      based on
+      your knowledge, revisit all the words you have solved before, compete with the top 5 players in the game and never
+      have to solve the same word twice.</p>
   </div>
   <div class="buttons-container">
     <button class="signIn-btn">Sign In</button>
@@ -32,27 +34,27 @@
 
   <!-- Forms -->
   <div class="form-container">
-      <form class="signIn-form">
-        <input type="text" id="signIn-username" name="username" placeholder="Username *">
-        <input type="password" id="signIn-password" name="password" placeholder="Password *">
-        <button type="button" class="signIn-form-btn">Sign In</button>
-        <p class="errorMsg signIn-errorMsg"></p>
-      </form>
+    <form class="signIn-form">
+      <input type="text" id="signIn-username" name="username" placeholder="Username *">
+      <input type="password" id="signIn-password" name="password" placeholder="Password *">
+      <button type="button" class="signIn-form-btn">Sign In</button>
+      <p class="errorMsg signIn-errorMsg"></p>
+    </form>
 
-      <form class="signUp-form">
-        <input type="text" name="fullName" placeholder="Full Name *">
-        <p>- Only your first and last name</p>
-        <select name="country" id="country-list">
-          <option>Select Country *</option>
-        </select>
-        <input type="email" name="email" placeholder="Email *">
-        <input type="text" id="signUp-username" name="username" placeholder="Username *">
-        <p>- Your username must be 6-12 characters long and it can only consist of alphanumeric characters</p>
-        <input type="password" id="signUp-password" name="password" placeholder="Password *">
-        <p>- Your password must be 8-20 characters long</p>
-        <button type="button" class="signUp-form-btn">Sign Up</button>
-        <p class="errorMsg signUp-errorMsg"></p>
-      </form>
+    <form class="signUp-form">
+      <input type="text" name="fullName" placeholder="Full Name *">
+      <p>- Only your first and last name</p>
+      <select name="country" id="country-list">
+        <option>Select Country *</option>
+      </select>
+      <input type="email" name="email" placeholder="Email *">
+      <input type="text" id="signUp-username" name="username" placeholder="Username *">
+      <p>- Your username must be 6-12 characters long and it can only consist of alphanumeric characters</p>
+      <input type="password" id="signUp-password" name="password" placeholder="Password *">
+      <p>- Your password must be 8-20 characters long</p>
+      <button type="button" class="signUp-form-btn">Sign Up</button>
+      <p class="errorMsg signUp-errorMsg"></p>
+    </form>
   </div>
 
   <!-- Game Modals -->
@@ -83,7 +85,7 @@
       <p>Unfortunately, either your time is out or your answer is wrong</p>
       <div class="failure-btns-container">
         <button class="play-again-btn failure-btn">Play Again</button>
-        <button class="check-answer-btn">Check Answer</button>
+        <button class="check-rightAnswer-btn">Check Answer</button>
       </div>
       <span class="close-failure-modal">X</span>
     </div>
@@ -106,9 +108,6 @@
     </div>
   </div>
   <button class="about-btn" onclick="window.location = '/about.html'">About</button>
-  <script type="text/javascript" src="./scripts/homepage/forms.js"></script>
-  <script type="text/javascript" src="./scripts/homepage/modal.js"></script>
-
 </body>
 
 </html>
