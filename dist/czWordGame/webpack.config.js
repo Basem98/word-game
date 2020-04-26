@@ -5,7 +5,7 @@ module.exports = {
   entry: {
     homepage: path.resolve('./dist/czWordGame/scripts/homepage/homepage.js'),
     dashboard: path.resolve('./dist/czWordGame/scripts/dashboard/dashboard.js'),
-    verificationPage: path.resolve('./dist/czWordGame/scripts/homepage/verificationPage.js')
+    verificationPage: path.resolve('./dist/czWordGame/scripts/verificationPage/verificationPage.js')
   },
   output: {
     filename: '[name].js',
