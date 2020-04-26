@@ -1,43 +1,14 @@
 // Game functionality
-const czPlayBtn = document.querySelector('.play-btn-cz');
-const enPlayBtn = document.querySelector('.play-btn-en');
-
-const progress = document.querySelector('.progress');
-
-const modalContainer = document.querySelector('.game-modal-container');
-const failureModalContainer = document.querySelector('.failure-modal-container');
-const successModalContainer = document.querySelector('.success-modal-container');
-const rightAnswerModalContainer = document.querySelector('.right-answer-container');
-
-const submitBtn = document.querySelector('.submit-solution-btn');
-
-const closeGameModal = document.querySelector('.close-game-modal');
-const closeFailureModal = document.querySelector('.close-failure-modal');
-const closeSuccessModal = document.querySelector('.close-success-modal');
-const closeCheckModal = document.querySelector('.close-rightAnswer-modal');
-
-const checkAnswer = document.querySelector('.check-answer-btn');
-
-const playAgainBtnAfterFailure = document.querySelector('.failure-btn');
-const playAgainBtnAfterSuccess = document.querySelector('.success-btn');
-const playAgainBynAfterCheck = document.querySelector('.right-answer-btn');
-
-const wordDefinitionP = document.querySelector('.word-definition');
-const firstOption = document.querySelector('#sol-0');
-const secondOption = document.querySelector('#sol-1');
-const thirdOption = document.querySelector('#sol-2');
-const firstOptLabel = document.querySelector('.label-0');
-const secondOptLabel = document.querySelector('.label-1');
-const thirdOptLabel = document.querySelector('.label-2');
-
 let gameWords = [];
 let chosenWord = {};
 let currentLang = '';
 
-let gameTimer;
-let progressBarIntervals;
+let timeoutId;
+let intervalId;
 
-function initialGame(lang) {
+
+// The function that gets the game data from the server and shows it on the UI
+function initiateGame(lang, gameBox, progressBar, mainModalContainer, failureModalContainer) {
   return fetch(`/getrandomwords/${lang}`, {
     method: 'GET'
   })
@@ -47,108 +18,154 @@ function initialGame(lang) {
       chosenWord = gameWords[Math.floor(Math.random() * 3)];
     })
     .then(() => {
-      wordDefinitionP.innerHTML = chosenWord.meaning;
-      firstOption.setAttribute('value', gameWords[0].word);
-      secondOption.setAttribute('value', gameWords[1].word);
-      thirdOption.setAttribute('value', gameWords[2].word);
-      firstOptLabel.innerHTML = gameWords[0].word;
-      secondOptLabel.innerHTML = gameWords[1].word;
-      thirdOptLabel.innerHTML = gameWords[2].word;
+      gameBox.wordDefinition.innerHTML = chosenWord.meaning;
+      gameBox.actualInputElements.forEach((inputElement, index) => {
+        inputElement.setAttribute('value', gameWords[index].word);
+      });
+      gameBox.inputElementsLabels.forEach((inputLabel, index) => {
+        inputLabel.innerHTML = gameWords[index].word;
+      });
     })
     .then(() => {
-      modalContainer.classList.add('active-modal');
-      let incrementer = 0.066;
-      progressBarIntervals = setInterval(() => {
-        if (incrementer < 99) {
-          progress.style.width = incrementer + '%';
-          incrementer += 0.066;
-        } else {
-          clearInterval(progressBarIntervals);
-        }
-      }, 10);
-      gameTimer = setTimeout(() => {
-        if (modalContainer.classList.contains('active-modal')) {
-          modalContainer.classList.remove('active-modal');
-          failureModalContainer.classList.add('active-modal');
-        }
+      progressBar.currentProgress.style.width = '1%';
+      mainModalContainer.classList.add('active-modal');
+      timeoutId = setTimeout(() => {
+        progressBar.progressTimer(mainModalContainer, failureModalContainer);
       }, 15 * 1000);
-
+      intervalId = setInterval(() => {
+        progressBar.progressIntervals();
+      }, 10);
     })
     .catch(error => console.error(error));
 }
 
+function startGameEvent(
+  czPlayBtn,
+  enPlayBtn,
+  gameBox,
+  mainModalContainer,
+  failureModalContainer,
+  progressBar
+) {
+  czPlayBtn.addEventListener('click', () => {
+    czPlayBtn.disabled = true;
+    currentLang = 'cz';
+    initiateGame(currentLang, gameBox, progressBar, mainModalContainer, failureModalContainer).then(() => {
+      czPlayBtn.disabled = false;
+    })
 
-czPlayBtn.addEventListener('click', () => {
-  czPlayBtn.disabled = true;
-  currentLang = 'cz';
-  initialGame(currentLang).then(() => {
-    czPlayBtn.disabled = false;
-  })
+  });
 
-});
+  enPlayBtn.addEventListener('click', () => {
+    enPlayBtn.disabled = true;
+    currentLang = 'en';
+    initiateGame(currentLang, gameBox, progressBar, mainModalContainer, failureModalContainer).then(() => {
+      enPlayBtn.disabled = false;
+    })
 
-enPlayBtn.addEventListener('click', () => {
-  enPlayBtn.disabled = true;
-  currentLang = 'en';
-  initialGame(currentLang).then(() => {
-    enPlayBtn.disabled = false;
-  })
+  });
+}
 
-});
+function submitGameAnswer(
+  submitBtn,
+  mainModalContainer,
+  successModalContainer,
+  failureModalContainer,
+  progressBar
+) {
+  submitBtn.addEventListener('click', () => {
+    // Get the checked input in the radio inputs list
+    const answer = Array.from(document.getElementsByName('solution')).filter(box => box.checked)[0];
+    if (answer && answer.defaultValue === chosenWord.word) {
+      successModalContainer.classList.add('active-modal');
+    } else {
+      failureModalContainer.classList.add('active-modal');
+    }
+    mainModalContainer.classList.remove('active-modal');
+    progressBar.currentProgress.style.width = 1 + '%';
+    // clearInterval(progressBarIntervals);
+    clearInterval(intervalId);
+    // clearTimeout(gameprogressTimer);
+    clearTimeout(timeoutId);
+  });
+}
 
-submitBtn.addEventListener('click', () => {
-  // Get the checked input in the radio inputs list
-  const answer = Array.from(document.getElementsByName('solution')).filter(box => box.checked)[0];
-  if (answer && answer.defaultValue === chosenWord.word) {
-    successModalContainer.classList.add('active-modal');
-  } else {
-    failureModalContainer.classList.add('active-modal');
-  }
-  modalContainer.classList.remove('active-modal');
-  clearInterval(progressBarIntervals);
-  clearTimeout(gameTimer);
-  progress.style.width = 1 + '%';
-});
+function checkRightAnswer(
+  checkAnswer,
+  failureModalContainer,
+  rightAnswerModalContainer
+) {
+  checkAnswer.addEventListener('click', () => {
+    failureModalContainer.classList.remove('active-modal');
+    rightAnswerModalContainer.classList.add('active-modal');
+    document.querySelector('.word').innerHTML = chosenWord.word;
+    document.querySelector('.meaning').innerHTML = chosenWord.meaning;
+  });
+}
 
-checkAnswer.addEventListener('click', () => {
-  failureModalContainer.classList.remove('active-modal');
-  rightAnswerModalContainer.classList.add('active-modal');
-  document.querySelector('.word').innerHTML = chosenWord.word;
-  document.querySelector('.meaning').innerHTML = chosenWord.meaning;
-});
+function playAgain(
+  gameBox,
+  mainModalContainer,
+  failureModalContainer,
+  playAgainBtnAfterFailure,
+  successModalContainer,
+  playAgainBtnAfterSuccess,
+  rightAnswerModalContainer,
+  playAgainBynAfterCheck,
+  progressBar
+) {
+  playAgainBtnAfterFailure.addEventListener('click', () => {
+    failureModalContainer.classList.remove('active-modal');
+    initiateGame(currentLang, gameBox, progressBar, mainModalContainer, failureModalContainer);
 
-playAgainBtnAfterFailure.addEventListener('click', () => {
-  failureModalContainer.classList.remove('active-modal');
-  initialGame(currentLang);
+  });
 
-});
+  playAgainBtnAfterSuccess.addEventListener('click', () => {
+    successModalContainer.classList.remove('active-modal');
+    initiateGame(currentLang, gameBox, progressBar, mainModalContainer, failureModalContainer);
+  });
 
-playAgainBtnAfterSuccess.addEventListener('click', () => {
-  successModalContainer.classList.remove('active-modal');
-  initialGame(currentLang);
-});
+  playAgainBynAfterCheck.addEventListener('click', () => {
+    rightAnswerModalContainer.classList.remove('active-modal');
+    initiateGame(currentLang, gameBox, progressBar, mainModalContainer, failureModalContainer);
+  });
+}
 
-playAgainBynAfterCheck.addEventListener('click', () => {
-  rightAnswerModalContainer.classList.remove('active-modal');
-  initialGame(currentLang);
-});
+function closeModals(
+  closeGameModal,
+  mainModalContainer,
+  closeFailureModal,
+  failureModalContainer,
+  closeSuccessModal,
+  successModalContainer,
+  closeCheckModal,
+  rightAnswerModalContainer,
+  progressBar
+) {
+  closeGameModal.addEventListener('click', () => {
+    mainModalContainer.classList.remove('active-modal');
+    progressBar.currentProgress.style.width = 1 + '%';
+    clearInterval(intervalId);
+    clearTimeout(timeoutId);
+  });
 
+  closeFailureModal.addEventListener('click', () => {
+    failureModalContainer.classList.remove('active-modal');
+  });
 
-closeGameModal.addEventListener('click', () => {
-  modalContainer.classList.remove('active-modal');
-  progress.style.width = 1 + '%';
-  clearInterval(progressBarIntervals);
-  clearTimeout(gameTimer);
-});
+  closeSuccessModal.addEventListener('click', () => {
+    successModalContainer.classList.remove('active-modal');
+  });
 
-closeFailureModal.addEventListener('click', () => {
-  failureModalContainer.classList.remove('active-modal');
-});
+  closeCheckModal.addEventListener('click', () => {
+    rightAnswerModalContainer.classList.remove('active-modal');
+  });
+}
 
-closeSuccessModal.addEventListener('click', () => {
-  successModalContainer.classList.remove('active-modal');
-});
-
-closeCheckModal.addEventListener('click', () => {
-  rightAnswerModalContainer.classList.remove('active-modal');
-});
+module.exports = {
+  startGameEvent,
+  submitGameAnswer,
+  checkRightAnswer,
+  playAgain,
+  closeModals
+}
