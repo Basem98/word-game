@@ -163,17 +163,16 @@ function submitFormsEvent(
   });
 
   // Associating the Enter key press with submitting either of the forms, if one of them is active
-  window.onload = (event) => {
+  signInForm.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
-      if (signInForm.classList.contains('active-form')) {
-        signIn(signInResponse);
-      } else if (signUpForm.classList.contains('active-form')) {
-        signUp(signUpResponse);
-      } else {
-        event.preventDefault();
-      }
+      signIn(signInResponse);
     }
-  }
+  });
+  signUpForm.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+      signUp(signUpResponse);
+    }
+  });
   return;
 }
 

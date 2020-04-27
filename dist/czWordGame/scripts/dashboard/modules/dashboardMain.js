@@ -8,7 +8,7 @@ let currentUser = JSON.parse(localStorage.getItem('currentUser'));
 let currentGameHistory = currentUser.gameHistory;
 let topFiveUsers;
 
-this.onload = () => {
+window.onload = () => {
   if (!currentUser) {
     alert(res.msg);
     window.location = '/';
