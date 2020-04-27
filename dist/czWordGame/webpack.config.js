@@ -4,11 +4,7 @@ const path = require('path');
 module.exports = {
   entry: {
     homepage: path.resolve('./dist/czWordGame/scripts/homepage/homepage.js'),
-    dashboard: [
-      path.resolve('./dist/czWordGame/scripts/dashboard/dashboard.js'),
-      path.resolve('./dist/czWordGame/scripts/dashboard/modules/dashboardMain.js'),
-      path.resolve('./dist/czWordGame/scripts/dashboard/modules/dashboardModals.js')
-    ],
+    dashboard: path.resolve('./dist/czWordGame/scripts/dashboard/dashboard.js'),
     verificationPage: path.resolve('./dist/czWordGame/scripts/verificationPage/verificationPage.js')
   },
   output: {

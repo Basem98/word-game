@@ -66,9 +66,24 @@ function implementGameModals(
 
   // Declaring the functions that gets the game data from the server and shows it on the UI
   function initiateGame() {
-    return fetch(`/getrandomwords/${currentLang}`, {
-      method: 'GET'
-    })
+    let getWords;
+    if (isUserLoggedIn) {
+      getWords = fetch(`/getrandomwords/${currentLang}`, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userId: loggedUserFunctionality.currentUser._id
+        })
+      });
+    } else {
+      getWords = fetch(`/getrandomwords/${currentLang}`, {
+        method: 'GET'
+      });
+    }
+    return getWords
       .then(res => res.json())
       .then((res) => {
         gameWords = res.chosenWords;
@@ -159,8 +174,8 @@ function implementGameModals(
                 // Update the user data saved in the localStorage
 
                 if (loggedUserFunctionality.currentUser.title !== res.currentUser.title) {
-                  loggedUserFunctionality.promotionMsg.innerHTML = `Congratz, ${loggedUserFunctionality.currentUser.fullName}! You have just been promoted and assigned the title of ${res.loggedUserFunctionality.currentUser.title}!`;
-                  loggedUserFunctionality.loggedUserFunctionality.promotionMsgModalContainer.classList.add('active-modal');
+                  loggedUserFunctionality.promotionMsg.innerHTML = `Congratz, ${loggedUserFunctionality.currentUser.fullName}! You have just been promoted and assigned the title of ${res.currentUser.title}!`;
+                  loggedUserFunctionality.promotionMsgModalContainer.classList.add('active-modal');
                   successModalContainer.classList.remove('active-modal');
                 }
 
@@ -286,7 +301,7 @@ function implementGameModals(
     });
     if (isUserLoggedIn) {
       loggedUserFunctionality.closePromoMsgModal.addEventListener('click', () => {
-        loggedUserFunctionality.loggedUserFunctionality.promotionMsgModalContainer.classList.remove('active-modal');
+        loggedUserFunctionality.promotionMsgModalContainer.classList.remove('active-modal');
       });
     }
   }
