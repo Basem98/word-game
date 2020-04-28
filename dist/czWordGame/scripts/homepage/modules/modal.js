@@ -205,27 +205,10 @@ function implementGameModals(
                 loggedUserFunctionality.currentUser.gameHistory.push(chosenWord);
 
                 // Update the score and title in the top five players section
-                const isInTopFive = document.getElementsByClassName(`${loggedUserFunctionality.currentUser.username}`);
-                if (isInTopFive.length >= 2) {
-                  isInTopFive[1].innerHTML = loggedUserFunctionality.currentUser.title;
-                  isInTopFive[2].innerHTML = loggedUserFunctionality.currentUser.score;
-                } else if (loggedUserFunctionality.currentUser.score > topFiveUsers[topFiveUsers.length - 1].score) {
-                  let topFiveSpot1 = document.getElementsByClassName(`${topFiveUsers[topFiveUsers.length - 1].username}`)[0];
-                  let topFiveSpot2 = document.getElementsByClassName(`${topFiveUsers[topFiveUsers.length - 1].username}`)[1];
-                  let topFiveSpot3 = document.getElementsByClassName(`${topFiveUsers[topFiveUsers.length - 1].username}`)[2];
-                  topFiveSpot1.innerHTML = loggedUserFunctionality.currentUser.username;
-                  topFiveSpot1.removeAttribute('class');
-                  topFiveSpot1.setAttribute('class', `${loggedUserFunctionality.currentUser.username}`);
-                  topFiveSpot2.innerHTML = loggedUserFunctionality.currentUser.title;
-                  topFiveSpot2.removeAttribute('class');
-                  topFiveSpot2.setAttribute('class', `${loggedUserFunctionality.currentUser.username}`);
-                  topFiveSpot3.innerHTML = loggedUserFunctionality.currentUser.score;
-                  topFiveSpot3.removeAttribute('class');
-                  topFiveSpot3.setAttribute('class', `${loggedUserFunctionality.currentUser.username}`);
-                  topFiveUsers[topFiveUsers.length - 1] = loggedUserFunctionality.currentUser;
-                  topFiveUsernames[topFiveUsernames.length - 1] = loggedUserFunctionality.currentUser.username;
-                }
-
+                (async () => {
+                  const getTopFive = await (await loggedUserFunctionality.getTopFivePlayers()).json();
+                  loggedUserFunctionality.showTopFivePlayers(getTopFive.topFiveUsers, loggedUserFunctionality.topFivePlayersDiv);
+                })();
               } else {
                 console.log(res);
               }

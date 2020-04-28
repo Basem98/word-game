@@ -18,11 +18,13 @@ const loggedUserFunctionality = {
   successMsg: document.querySelector('.success-msg'),
   closePromoMsgModal: document.querySelector('.close-promotionMsg-modal'),
   playAgainBtnAfterPromo: document.querySelector('.continue-playing-btn'),
-  wordsHistoryDiv: document.querySelector('.words-history')
+  wordsHistoryDiv: document.querySelector('.words-history'),
+  topFivePlayersDiv: document.querySelector('.allUsers-container'),
+  getTopFivePlayers,
+  showTopFivePlayers
 };
 
 // Data related to rendering the main parts of the dashboard
-const topFivePlayersDiv = document.querySelector('.top-players');
 const wordsTableElements = {
   wordsTableBody: document.getElementsByTagName('tbody')[0],
   wordsHistoryDiv: document.querySelector('.words-history'),
@@ -57,7 +59,7 @@ window.onload = () => {
       })
       .then(async () => {
         const getTopFive = await (await getTopFivePlayers()).json();
-        showTopFivePlayers(getTopFive.topFiveUsers, topFivePlayersDiv);
+        showTopFivePlayers(getTopFive.topFiveUsers, loggedUserFunctionality.topFivePlayersDiv);
       })
       .catch(error => console.error(error));
   }

@@ -57,6 +57,9 @@ function getTopFivePlayers() {
 
 // Show the top five users
 function showTopFivePlayers(topFivePlayers, topFivePlayersDiv) {
+  while (topFivePlayersDiv.children.length > 0) {
+    topFivePlayersDiv.removeChild(topFivePlayersDiv.firstChild);
+  }
   topFivePlayers.forEach(user => {
 
     const paragraph1 = document.createElement('p');
