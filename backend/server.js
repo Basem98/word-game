@@ -17,7 +17,7 @@ const server = express();
 // The Middleware Layers
 
 // The static folder (The client-side)
-server.use(express.static(path.join(__dirname, '../dist/czWordGame')));
+server.use(express.static(path.join(__dirname, '../dist')));
 
 // The Parsing Layer
 server.use(express.json());
@@ -48,7 +48,7 @@ server.use('/', require('./api/routes'));
 
 // The function responsible for viewing the index.html folder
 server.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/czWordGame/index.html'));
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
 })
 
 
