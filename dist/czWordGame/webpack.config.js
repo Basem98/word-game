@@ -11,6 +11,17 @@ module.exports = {
     filename: '[name].js',
     path: path.join(__dirname, '..')
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' }
+        ]
+      }
+    ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',

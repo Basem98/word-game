@@ -1,3 +1,8 @@
+import '../../styles/dashboardStyles/dashboardButtons.css';
+import '../../styles/dashboardStyles/dashboardMain.css';
+import '../../styles/dashboardStyles/dashboard-relatedModals.css';
+import '../../styles/homepageStyles/modal.css';
+
 import { implementGameModals } from '../homepage/modules/modal';
 import {
   authenticateUser,

@@ -1,4 +1,9 @@
+import '../../styles/homepageStyles/buttons.css';
+import '../../styles/homepageStyles/mainDivs.css';
+import '../../styles/homepageStyles/verificationPage.css';
+
 import { signIn } from '../homepage/modules/forms';
+
 
 const sumbitSignInForm = document.querySelector('.signIn-form-btn');
 const responseMsgs = {

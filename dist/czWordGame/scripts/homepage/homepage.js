@@ -1,3 +1,8 @@
+import '../../styles/homepageStyles/mainDivs.css';
+import '../../styles/homepageStyles/buttons.css';
+import '../../styles/homepageStyles/forms.css';
+import '../../styles/homepageStyles/modal.css';
+
 import {
   switchForms,
   submitFormsEvent,
