@@ -14,14 +14,14 @@
     "express-session": "^1.17.1",
     "mongoose": "^5.9.11",
     "nodemailer": "^6.4.6",
-    "uuid": "^7.0.3"
+    "uuid": "^7.0.3",
+    "webpack": "^4.43.0"
   },
   "devDependencies": {
     "css-loader": "^3.5.3",
     "html-webpack-plugin": "^4.3.0",
-    "nodemon": "^1.19.4",
+    "nodemon": "^2.0.3",
     "style-loader": "^1.2.1",
-    "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
   },
   "engines": {
