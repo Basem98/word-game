@@ -69,8 +69,8 @@ function validateNewUserData(userData, signUpResponse) {
 function getCountriesList() {
   const dropDownList = document.querySelector('#country-list');
 
-  fetch('https://restcountries.eu/rest/v2/all').then(res => res.json()).then((countriesList) => {
-    countriesList.forEach((country) => {
+  fetch('https://restcountries.com/v2/all').then(res => res.json()).then((countriesList) => {
+  countriesList.forEach((country) => {
       const option = document.createElement('option');
       const textNode = document.createTextNode(country.name);
       option.setAttribute('value', country.name);
