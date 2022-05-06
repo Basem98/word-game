@@ -9,16 +9,16 @@ async function sendConfirmationEmail(userEmail, userId, userFullname) {
     const token = await genVerificationToken(userId);
     const transporter = nodemailer.createTransport(
       {
-        service: 'Gmail',
+        service: 'Yahoo',
         auth: {
-          user: config.APP.GMAIL_ID,
-          pass: config.APP.GMAIL_PASS
+          user: config.APP.YAHOO_ID,
+          pass: config.APP.YAHOO_PASS
         }
       }
     );
     const mailOptions = {
       to: userEmail,
-      from: 'basem@czWordgame.com',
+      from: 'basem.mostafa@czWordgame.com',
       subject: 'Verification Mail',
       text: 'Hello, '+ userFullname
       + '\nI am delighted to tell you that you have successfully signed up, but there is only one step left. '
