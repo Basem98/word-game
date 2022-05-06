@@ -30,12 +30,12 @@ function validateNewUserData(userData, signUpResponse) {
   ) {
     userData.fullName = userData.fullName.replace(/^\s*(\w+)\s{1,}(\w+)\s*$/, '$1 $2')
     userData.fullName = userData.fullName.split(' ').map(word => {
-      return `${word[0].toUpperCase()}${word.slice(1)}`;
+      return `${word[0].toUpperCase()}${word.slice(1)}`.trim();
     }
     ).join(' ');
 
-    if (!userData.email.match(/^\w+\.*\w+\@\w+(\.com|\.net)$/g)) {
-      signUpResponse.innerHTML = 'Please use a proper email address that looks like this: example@something.com or example@something.net';
+    if (!userData.email.match(/^[A-Z0-9._%+-]+[A-Z0-9]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/gi)) {
+      signUpResponse.innerHTML = 'Please use a proper email address that looks like this: example@something.domain';
       signUpResponse.style.visibility = 'visible';
       return false;
     }
