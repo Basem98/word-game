@@ -73,10 +73,7 @@ function implementGameModals(
         credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          userId: loggedUserFunctionality.currentUser._id
-        })
+        }
       });
     } else {
       getWords = fetch(`/getrandomwords/${currentLang}`, {

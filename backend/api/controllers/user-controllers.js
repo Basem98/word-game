@@ -168,7 +168,7 @@ function updateGameInfo(req, res) {
 
 function getWords(req, res) {
   const lang = req.params.lang;
-  const { userId } = req.body;
+  const { _id:userId } = req.session.currentUser;
   getRandomWords(lang, userId).then((chosenWords) => {
     res.status(200).json({
       success: true,
