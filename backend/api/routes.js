@@ -29,7 +29,7 @@ const router = express.Router();
 router.post('/signup', validateSignup, existsInDb, signup);
 router.post('/signin', signin);
 router.get('/signout', signOut);
-router.get('/confirmverification/:token/:email', verifyUser);
+router.get('/confirmverification/:token/:userId', verifyUser);
 router.post('/resendverification', resendVerification);
 router.get('/getuserdata', authenticate, getUserData);
 router.get('/gettopfive', authenticate, getTopFiveUsers);

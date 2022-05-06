@@ -85,9 +85,9 @@ function signOut(req, res) {
 
 async function verifyUser(req, res) {
   try {
-    const { token, email } = req.params;
+    const { token, userId } = req.params;
     const isVerificationConfirmed = await isTokenVerified(token);
-    let currentUser = await getUserByEmail(email);
+    let currentUser = await getUserById(userId);
     if (isVerificationConfirmed && currentUser && !currentUser.isVerified) {
       currentUser.isVerified = true;
       currentUser.save();
