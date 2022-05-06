@@ -9,7 +9,7 @@ function validateSignup(req, res, next) {
         msg: 'You username must be 6-12 characters long'
           + ' and it can only consist of alphanumeric characters'
       });
-    } else if (!email.match(/^\w+\.*\w+\@\w+(\.com|\.net)$/g)) {
+    } else if (!email.match(/^^[A-Z0-9._%+-]+[A-Z0-9]+@[A-Z0-9.-]+\.[A-Z]{2,4}$$/gi)) {
       res.json({
         success: false,
         msg: 'Please enter a valid email address'
